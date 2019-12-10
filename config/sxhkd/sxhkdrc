@@ -1,0 +1,177 @@
+##############################
+#           _     _       _  #
+#  _____  _| |__ | | ____| | #
+# / __\ \/ / '_ \| |/ / _` | #
+# \__ \>  <| | | |   < (_| | #
+# |___/_/\_\_| |_|_|\_\__,_| #
+#                            #
+##############################
+
+###################
+# Program Hotkeys #
+###################
+
+# terminal emulator
+super + Return
+    alacritty
+
+# program launcher
+super + space
+    rofi -show run -terminal alacritty -theme material -font "Fira Code 11"
+
+# make sxhkd reload its configuration files:
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Lock screen
+super + alt + x
+    betterlockscreen -l blur
+
+# Prints
+Print
+    import -window root ~/Pictures/Screenshots/scrot_desktop_$(date +"%Y-%m-%d_%H-%M-%S").png;\\
+    notify-send 'Desktop Saved'
+
+shift + Print
+    import -window "$activeWinId" ~/Pictures/Screenshots/scrot_window_$(date +"%Y-%m-%d_%H-%M-%S").png;\\
+    notify-send 'Window Saved'
+
+ctrl + Print
+    import ~/Pictures/Screenshots/scrot_area_$(date +"%Y-%m-%d_%H-%M-%S").png;\\
+    notify-send 'Area Saved'
+
+# Music controls
+{XF86AudioLowerVolume, XF86AudioRaiseVolume}
+    pactl set-sink-volume $(pacmd list-sinks | grep index | tail -c 2) {'-5%', '+5%'}
+XF86AudioMute
+    pactl set-sink-mute $(pacmd list-sinks | grep index | tail -c 2) toggle
+XF86AudioPlay
+    playerctl play-pause
+XF86AudioStop
+    playerctl stop
+{XF86AudioPrev, XF86AudioNext}
+    playerctl {previous, next}
+super + {less, greater}
+    playerctl {previous, next}
+
+# Backlight
+{XF86MonBrightnessDown, XF86MonBrightnessUp}
+    xbacklight {-dec, -inc} 5
+
+#################
+# bspwm hotkeys #
+#################
+
+# quit/restart bspwm
+super + alt + {q,r}
+    bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }q
+    bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+    bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+    bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+super + g
+    bspc node -s biggest
+
+# Mirror and flip leaves of tree
+super + shift + {comma,period}
+    bspc node -F {horizontal,vertical}
+
+# Rotate leaves of tree
+super + alt + {comma,period}
+    bspc node -R {90,270}
+
+# Change window gap
+super + {minus,equal}
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
+
+###############
+# state/flags #
+###############
+
+# set the window state
+super + {t,shift + t,s,f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+
+##############
+# focus/swap #
+##############
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}' --follow
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+    bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+    bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+    bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+    bspc {node,desktop} -f last
+
+#############
+# preselect #
+#############
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+    bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+###############
+# move/resize #
+###############
+
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
+
+
+######################################
+# Not so useful configs from example #
+######################################
+
+# move a floating window
+super + {Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# focus the older or newer node in the focus history
+super + {o,i}
+    bspc wm -h off; \
+    bspc node {older,newer} -f; \
+    bspc wm -h on

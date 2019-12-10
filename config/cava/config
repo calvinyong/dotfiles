@@ -1,0 +1,11 @@
+[general]
+
+bar_width = 1
+
+[output]
+
+channels = mono
+
+[color]
+
+gradient = 0
