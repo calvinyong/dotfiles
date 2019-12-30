@@ -7,18 +7,8 @@
 #                                                  #
 ####################################################
 
-# Some links to other users tmux conf
-#
-# https://thoughtbot.com/upcase/tmux
-# https://gist.github.com/tsl0922/d79fc1f8097dde660b34
-# https://gist.github.com/spicycode/1229612
-
 # Note set is alias of set-option
 # setw is alias for set-window-option
-
-################
-# Start config #
-################
 
 
 # use C-a as prefix
@@ -27,22 +17,15 @@ set -g prefix C-a
 bind-key C-a send-prefix
 
 # Basic important stuff
-bind-key r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded"
+bind-key r source-file ~/.config/tmux/conf \; display-message "tmux.conf reloaded"
 set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256col*:Tc"
 set -g status-keys "emacs"
 setw -g mode-keys vi
 
 # Time in milliseconds for which tmux waits after an escape
 # Means vim escape no delay
 set -g escape-time 0
-
-# Set windows and panes at 1, not 0
-set -g base-index 1
-setw -g pane-base-index 1
-
-# Renumber windows as they are created and destroyed
-# to keep the window numbers consistent with the count
-set -g renumber-windows on
 
 # Allow the arrow key to be used immediately after changing windows
 set -sg repeat-time 0
@@ -57,14 +40,32 @@ set -g history-file ~/.cache/tmux/history
 # No bells at all
 set -g bell-action none
 
-######## Pane related stuff ########
+# Set window notifications
+setw -g monitor-activity on
+set -g visual-activity on  # Send message instead of bell
 
+
+######################
+# Pane related stuff #
+######################
+
+# Set windows and panes at 1, not 0
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Renumber windows as they are created and destroyed
+# to keep the window numbers consistent with the count
+set -g renumber-windows on
 
 # Vim-like keys for splits.
 # New panes will be created in the directory
 # of the pane you ran the key-binding from
 bind-key v split-window -h -c "#{pane_current_path}"
 bind-key s split-window -v -c "#{pane_current_path}"
+
+# Change to horizontal or vertical layout
+bind-key , select-layout even-horizontal
+bind-key . select-layout even-vertical
 
 # vim pane navigation (don't need prefix)
 bind-key -n C-h select-pane -L
@@ -85,20 +86,10 @@ bind-key -n C-Down resize-pane -D 5
 bind-key -n C-Up resize-pane -U 5
 
 
-######## Things I don't know ########
+############
+# My theme #
+############
 
+source-file $XDG_CONFIG_HOME/tmux/cyan.tmuxtheme
 
-# Status Bar
-set -g status-interval 5
-
-# Set window notifications
-setw -g monitor-activity on
-set -g visual-activity on  # Send message instead of bell
-
-
-########### TPM Plugins ############
-set -g @plugin 'jimeh/tmux-themepack'
-set -g @themepack 'powerline/double/cyan'
-
-# Keep at bottom
-run -b '~/.tmux/plugins/tpm/tpm'
+# vim:ft=tmux

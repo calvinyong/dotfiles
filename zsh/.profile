@@ -1,5 +1,5 @@
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
@@ -19,7 +19,3 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-
-# Keyboard options
-# setxkbmap -layout us -option ctrl:nocaps
-# setxkbmap -layout us -option ctrl:swap_lwin_lctl

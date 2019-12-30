@@ -40,14 +40,13 @@ Plug 'lervag/vimtex'
 
 " Colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'kaicataldo/material.vim'
-" Plug 'arcticicestudio/nord-vim'
+Plug 'kaicataldo/material.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 " Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'chriskempson/base16-vim'
 " Plug 'Rigellute/rigel'
 " Plug 'haishanh/night-owl.vim'
-" Plug 'junegunn/seoul256.vim'
-" Plug 'joshdick/onedark.vim'
 
 " Themes
 Plug 'vim-airline/vim-airline'
@@ -58,12 +57,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
 Plug 'dense-analysis/ale'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-emoji'
 Plug 'dylanaraps/wal.vim'
 
 " Other plugins
-Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
@@ -85,11 +82,14 @@ call plug#end()
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
                            \ {'b': '~/.config/bspwm/bspwmrc'},
                            \ {'s': '~/.config/sxhkd/sxhkdrc'},
+                           \ {'t': '~/.config/tmux/conf'},
                            \ {'z': '~/.zshrc'} ]
 
 " Set colorscheme
 if (has("termguicolors"))
     set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 colorscheme dracula
 highlight Normal guibg=black guifg=white
@@ -149,14 +149,8 @@ set completefunc=emoji#complete
 """"""""""""""
 
 " Line numbering
-set number
-
-" absolute in insert, hybrid in normal
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-augroup END
+set nu
+set rnu
 
 " Use spaces instead of tabs
 set expandtab
@@ -169,7 +163,7 @@ set tabstop=4
 set updatetime=100
 
 " Spell check
-autocmd FileType text,markdown,tex setlocal spell spelllang=en_us
+autocmd FileType markdown,tex setlocal spell spelllang=en_us
 
 """""""""""
 " Keymaps "

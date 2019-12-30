@@ -58,6 +58,9 @@ alias clock='tty-clock -cbts'
 alias ticker='ticker AAPL MSFT GOOG BTC-USD'
 alias more='less'
 alias cat='bat'
+alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/conf'
+alias ytdl-audio='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/audio.conf'
+alias ytdl-video='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/video.conf'
 
 # Other aliases
 alias ssh-termux='adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022'
@@ -97,4 +100,4 @@ source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 
 # Commands at start of session
-source $PYENV_ROOT/versions/3.7.3/envs/python/bin/activate
+source $PYENV_ROOT/versions/3.7.5/envs/python/bin/activate
