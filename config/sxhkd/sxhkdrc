@@ -17,10 +17,7 @@ super + Return
 
 # program launcher
 super + space
-    rofi -show run -terminal alacritty -theme material -font "Fira Code 11"
-
-super + c
-    chromium
+    rofi -show run -terminal alacritty -theme nord -font "Fira Code 11"
 
 super + k
     keepassxc
@@ -69,15 +66,18 @@ XF86AudioStop
 # Theming #
 ###########
 
-super + {F1,F2,F3}
-    $HOME/.local/bin/changetheme {default,dracula,nord}
+super + {F1,F2,F3,F4,F5}
+    $HOME/.local/bin/changetheme {default,dracula,nord,onedark,sweet}
+
+super + h
+    feh --randomize --no-fehbg --bg-fill ~/Pictures/Wallpaper/Random/*
 
 #################
 # bspwm hotkeys #
 #################
 
 # quit/restart bspwm
-super + alt + {q,r}
+super + ctrl + alt + {q,r}
     bspc {quit,wm -r}
 
 # close and kill

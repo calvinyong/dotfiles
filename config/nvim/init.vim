@@ -30,7 +30,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'davidhalter/jedi-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
@@ -40,32 +39,32 @@ Plug 'lervag/vimtex'
 
 " Colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'kaicataldo/material.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'joshdick/onedark.vim'
-" Plug 'drewtempelmeyer/palenight.vim'
-" Plug 'chriskempson/base16-vim'
-" Plug 'Rigellute/rigel'
-" Plug 'haishanh/night-owl.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'haishanh/night-owl.vim'
 
-" Themes
+" Airline
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " Cool Stuff
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
 Plug 'dense-analysis/ale'
-Plug 'junegunn/vim-emoji'
-Plug 'dylanaraps/wal.vim'
+Plug 'justinmk/vim-sneak'
 
 " Other plugins
-Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/vim-slash'
-" Plug 'mechatroner/rainbow_csv'
+
+" Fun
+Plug 'junegunn/vim-emoji'
+Plug 'dylanaraps/wal.vim'
+
+" Stuff to remember
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Plug 'vimwiki/vimwiki'
 " Plug 'tpope/vim-commentary'
 " Plug 'yuttie/comfortable-motion.vim'
@@ -82,23 +81,26 @@ call plug#end()
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
                            \ {'b': '~/.config/bspwm/bspwmrc'},
                            \ {'s': '~/.config/sxhkd/sxhkdrc'},
-                           \ {'t': '~/.config/tmux/conf'},
                            \ {'z': '~/.zshrc'} ]
 
-" Set colorscheme
+" Airline
+set noshowmode
+let g:airline_theme = 'nord'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#virtualenv#enabled = 0
+
+" Set colorscheme options
+let g:nord_underline = 1
+let g:nord_uniform_diff_background = 1
+
+" Set true color and colorscheme
 if (has("termguicolors"))
     set termguicolors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-colorscheme dracula
-highlight Normal guibg=black guifg=white
-
-" Airline
-let g:airline_theme='raven' " deus
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#vista#enabled = 1
-set noshowmode
+colorscheme nord
+" highlight Normal guibg=black guifg=white
 
 " LaTex
 let g:vimtex_view_method = 'zathura'
@@ -108,8 +110,6 @@ call deoplete#custom#var('omni', 'input_patterns', {
         \})
 
 " Python
-let g:semshi#error_sign=v:false
-let g:semshi#mark_selected_nodes=0
 let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 
@@ -120,6 +120,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \}
+let g:ale_fix_on_save = 1
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_echo_msg_error_str = 'E'
@@ -174,4 +175,5 @@ let maplocalleader = " "
 
 map <F7> :NERDTreeToggle<CR>
 nmap <F8> :Vista!!<CR>
+" Run current file
 nnoremap <F9> :!%:p<Enter>

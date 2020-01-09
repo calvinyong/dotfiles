@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+if [ $1 = 'default' ]; then
+    # Set wallpaper path
+    wp_path=~/Pictures/Wallpaper/Default/onedark/wp.jpg
+
+    # Change dunst theme
+    sed -i '285s/^    background =.*/    background = "#282c34"/' ~/.config/dunst/dunstrc
+    sed -i '286s/^    foreground =.*/    foreground = "#cccccc"/' ~/.config/dunst/dunstrc
+    sed -i '287s/^    frame_color =.*/    frame_color = "#29b8db"/' ~/.config/dunst/dunstrc
+
+    # Change window border
+    bspc config focused_border_color "#29b8db"
+
+elif [ $1 = 'dracula' ]; then
+    wp_path=~/Pictures/Wallpaper/Default/dracula/wp1.jpg
+
+    sed -i '285s/^    background =.*/    background = "#282a36"/' ~/.config/dunst/dunstrc
+    sed -i '286s/^    foreground =.*/    foreground = "#f8f8f2"/' ~/.config/dunst/dunstrc
+    sed -i '287s/^    frame_color =.*/    frame_color = "#bd93f9"/' ~/.config/dunst/dunstrc
+
+    bspc config focused_border_color "#bd93f9"
+
+elif [ $1 = 'nord' ]; then
+    wp_path=~/Pictures/Wallpaper/Default/nord/wp2.jpg
+
+    sed -i '285s/^    background =.*/    background = "#2e3440"/' ~/.config/dunst/dunstrc
+    sed -i '286s/^    foreground =.*/    foreground = "#d8dee9"/' ~/.config/dunst/dunstrc
+    sed -i '287s/^    frame_color =.*/    frame_color = "#5e81ac"/' ~/.config/dunst/dunstrc
+
+    bspc config focused_border_color "#5e81ac"
+
+elif [ $1 = 'onedark' ]; then
+    wp_path=~/Pictures/Wallpaper/Default/onedark/wp.jpg
+
+elif [ $1 = 'sweet' ]; then
+    wp_path=~/Pictures/Wallpaper/Default/onedark/wp.jpg
+
+else
+    exit 1
+fi
+
+# Set the wallpaper
+feh --no-fehbg --bg-fill $wp_path
+# Set the terminal color scheme
+sed -i "s/^colors:.*/colors: *$1/" $XDG_CONFIG_HOME/alacritty/alacritty.yml
+
+# Send notification that theme changed
+pkill dunst
+message="Changed to $1 theme"
+notify-send "$message"

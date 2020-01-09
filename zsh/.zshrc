@@ -23,7 +23,7 @@ DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load?
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git fast-syntax-highlighting colored-man-pages fzf)
+plugins=(git fast-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -58,7 +58,6 @@ alias clock='tty-clock -cbts'
 alias ticker='ticker AAPL MSFT GOOG BTC-USD'
 alias more='less'
 alias cat='bat'
-alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/conf'
 alias ytdl-audio='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/audio.conf'
 alias ytdl-video='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/video.conf'
 
@@ -79,7 +78,6 @@ alias weather='curl wttr.in'
 export GPG_TTY="$(tty)"
 
 # History
-
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history

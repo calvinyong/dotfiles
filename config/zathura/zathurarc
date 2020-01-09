@@ -1,35 +1,36 @@
-# Base16 Dracula
-# Author: Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
+# Base16 Nord
+# Author: arcticicestudio
+# From https://github.com/nicodebo/base16-zathura
 
-set default-bg                  "#282936"
-set default-fg                  "#3a3c4e"
+set default-bg                  "#2E3440"
+set default-fg                  "#3B4252"
 
-set statusbar-fg                "#62d6e8"
-set statusbar-bg                "#626483"
+set statusbar-fg                "#D8DEE9"
+set statusbar-bg                "#434C5E"
 
-set inputbar-bg                 "#282936"
-set inputbar-fg                 "#f7f7fb"
+set inputbar-bg                 "#2E3440"
+set inputbar-fg                 "#8FBCBB"
 
-set notification-bg             "#282936"
-set notification-fg             "#f7f7fb"
+set notification-bg             "#2E3440"
+set notification-fg             "#8FBCBB"
 
-set notification-error-bg       "#282936"
-set notification-error-fg       "#ea51b2"
+set notification-error-bg       "#2E3440"
+set notification-error-fg       "#88C0D0"
 
-set notification-warning-bg     "#282936"
-set notification-warning-fg     "#ea51b2"
+set notification-warning-bg     "#2E3440"
+set notification-warning-fg     "#88C0D0"
 
-set highlight-color             "#ebff87"
-set highlight-active-color      "#62d6e8"
+set highlight-color             "#5E81AC"
+set highlight-active-color      "#EBCB8B"
 
-set completion-bg               "#3a3c4e"
-set completion-fg               "#62d6e8"
+set completion-bg               "#3B4252"
+set completion-fg               "#EBCB8B"
 
-set completion-highlight-fg     "#f7f7fb"
-set completion-highlight-bg     "#62d6e8"
+set completion-highlight-fg     "#8FBCBB"
+set completion-highlight-bg     "#EBCB8B"
 
-set recolor-lightcolor          "#282936"
-set recolor-darkcolor           "#f1f2f8"
+set recolor-lightcolor          "#2E3440"
+set recolor-darkcolor           "#ECEFF4"
 
 set recolor                     "false"
 set recolor-keephue             "false"
