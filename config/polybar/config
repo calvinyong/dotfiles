@@ -103,7 +103,7 @@ label-focused-padding = 2
 label-occupied = %icon%
 label-occupied-padding = 2
 
-label-urgent = %icon%!
+label-urgent = %icon%
 label-urgent-foreground = ${nord.red}
 label-urgent-padding = 2
 

@@ -68,6 +68,7 @@ Plug 'dylanaraps/wal.vim'
 " Plug 'vimwiki/vimwiki'
 " Plug 'tpope/vim-commentary'
 " Plug 'yuttie/comfortable-motion.vim'
+" Plug 'Yggdroot/indentLine'
 
 " Always last one
 Plug 'ryanoasis/vim-devicons'
@@ -159,9 +160,6 @@ set expandtab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
-
-" Reduce delay from 4000 to 100
-set updatetime=100
 
 " Spell check
 autocmd FileType markdown,tex setlocal spell spelllang=en_us

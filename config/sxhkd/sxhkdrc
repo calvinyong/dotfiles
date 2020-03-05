@@ -17,7 +17,7 @@ super + Return
 
 # program launcher
 super + space
-    rofi -show run -terminal alacritty -theme nord -font "Fira Code 11"
+    rofi -show run -theme nord -font "Fira Code 11"
 
 super + k
     keepassxc

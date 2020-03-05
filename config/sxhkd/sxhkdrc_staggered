@@ -17,7 +17,7 @@ super + Return
 
 # program launcher
 super + space
-    rofi -show run -terminal alacritty -theme material -font "Fira Code 11"
+    rofi -show run -theme nord -font "Fira Code 11"
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -29,22 +29,25 @@ super + alt + x
 
 # Prints
 Print
-    import -window root ~/Pictures/Screenshots/scrot_desktop_$(date +"%Y-%m-%d_%H-%M-%S").png;\\
-    notify-send 'Desktop Saved'
+    import -window root ~/Pictures/Screenshots/scrot_desktop_$(date +"%F_%H-%M-%S").png;\
+    notify-send 'Desktop Saved';\
+    xclip -selection clipboard -t image/png  $(ls -t $HOME/Pictures/Screenshots/** | head -1)
 
 shift + Print
-    import -window "$activeWinId" ~/Pictures/Screenshots/scrot_window_$(date +"%Y-%m-%d_%H-%M-%S").png;\\
-    notify-send 'Window Saved'
+    import -window "$activeWinId" ~/Pictures/Screenshots/scrot_window_$(date +"%F_%H-%M-%S").png;\
+    notify-send 'Window Saved';\
+    xclip -selection clipboard -t image/png  $(ls -t $HOME/Pictures/Screenshots/** | head -1)
 
 ctrl + Print
-    import ~/Pictures/Screenshots/scrot_area_$(date +"%Y-%m-%d_%H-%M-%S").png;\\
-    notify-send 'Area Saved'
+    import ~/Pictures/Screenshots/scrot_area_$(date +"%F_%H-%M-%S").png;\
+    notify-send 'Area Saved';\
+    xclip -selection clipboard -t image/png  $(ls -t $HOME/Pictures/Screenshots/** | head -1)
 
 # Music controls
 {XF86AudioLowerVolume, XF86AudioRaiseVolume}
-    pactl set-sink-volume $(pacmd list-sinks | grep index | tail -c 2) {'-5%', '+5%'}
+    pactl set-sink-volume $(pacmd list-sinks | grep '*' | tail -c 2) {'-5%', '+5%'}
 XF86AudioMute
-    pactl set-sink-mute $(pacmd list-sinks | grep index | tail -c 2) toggle
+    pactl set-sink-mute $(pacmd list-sinks | grep '*' | tail -c 2) toggle
 XF86AudioPlay
     playerctl play-pause
 XF86AudioStop
@@ -161,11 +164,4 @@ super + ctrl + shift + space
 super + alt + {h,j,k,l}
     bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
-
-######################################
-# Not so useful configs from example #
-######################################
-
-# move a floating window
-super + {Left,Down,Up,Right}
-    bspc node -v {-20 0,0 20,0 -20,20 0}
+# vim:ft=sxhkdrc

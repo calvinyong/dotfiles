@@ -17,12 +17,12 @@ killall -q sxhkd
 feh --no-fehbg --bg-fill $HOME/Pictures/Wallpaper/Default/nord/wp2.jpg
 # Use normal sxhkd config if on planck keyboard
 # Else use config for staggered regular keyboards
-if xinput --list --name-only | grep -q Planck; then
+if xinput --list --name-only | grep -q -E 'Planck|Kyria|Corne'; then
     sxhkd &
 else
     sxhkd -c $XDG_CONFIG_HOME/sxhkd/sxhkdrc_staggered &
     setxkbmap -layout us -option ctrl:nocaps
-    setxkbmap -layout us -option ctrl:swap_lwin_lctl
+    setxkbmap -layout us -option altwin:swap_alt_win
 fi
 $HOME/.config/polybar/launch.sh
 
@@ -58,3 +58,4 @@ bspc rule -a Screenkey manage=off
 bspc rule -a KeePassXC state=floating follow=on
 bspc rule -a Zathura state=tiled
 bspc rule -a matplotlib state=floating
+bspc rule -a Matplotlib state=floating

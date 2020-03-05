@@ -5,6 +5,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export NODE_OPTIONS=--max-old-space-size=4096
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export LD_LIBRARY_PATH=/opt/cuda/lib
 
 # gpg agent stuff
 unset SSH_AGENT_PID
