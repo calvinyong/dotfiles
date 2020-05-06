@@ -1,0 +1,13 @@
+#!/bin/sh
+bspc subscribe | while read -r line; do
+    desktop=$(bspc query -D -d --names)
+    if [ $desktop == 'I' ]; then
+        feh --bg-fill --no-fehbg ~/Pictures/Wallpaper/nord/wp2.jpg
+    elif [ $desktop == 'II' ]; then
+        feh --bg-fill --no-fehbg ~/Pictures/Wallpaper/nord/nwgumars.jpg
+    elif [ $desktop == 'III' ]; then
+        feh --bg-fill --no-fehbg ~/Pictures/Wallpaper/nord/rstnfu.jpg
+    else
+        feh --bg-fill --no-fehbg ~/Pictures/Wallpaper/nord/SBKjnxm.jpg
+    fi
+done;

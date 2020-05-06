@@ -34,7 +34,7 @@ offset-x = 0
 offset-y = 0
 cursor-click = pointer
 font-0 = FuraCode Nerd Font:size=10;1
-wm-restack = true
+wm-restack = bspwm
 
 ;background = ${nord.background}
 background = #00000000
@@ -63,6 +63,7 @@ offset-x = 0
 offset-y = 0
 cursor-click = pointer
 font-0 = FuraCode Nerd Font:size=10;1
+wm-restack = bspwm
 
 ;background = ${nord.background}
 background = #00000000

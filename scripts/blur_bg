@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Blur an image using something like imagemagick
+# convert img.jpg -blur 0x8 blur.png
+bspc subscribe | while read -r line; do
+    node_num=$(bspc query --nodes any.focused | wc -l)
+    if [ $node_num == '0' ]; then
+        feh --bg-fill --no-fehbg ~/wp2.jpg
+    else
+        feh --bg-fill --no-fehbg ~/blur.png
+    fi
+done;

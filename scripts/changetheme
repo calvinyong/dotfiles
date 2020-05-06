@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-
+#!/bin/sh
 if [ $1 = 'default' ]; then
     # Set wallpaper path
     wp_path=~/Pictures/Wallpaper/Default/onedark/wp.jpg

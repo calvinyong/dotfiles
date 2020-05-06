@@ -14,7 +14,7 @@ killall -q sxhkd
 
 # Startups
 # compton &
-feh --no-fehbg --bg-fill $HOME/Pictures/Wallpaper/Default/nord/wp2.jpg
+feh --no-fehbg --bg-fill $HOME/Pictures/Wallpaper/Nord/wp.jpg
 # Use normal sxhkd config if on planck keyboard
 # Else use config for staggered regular keyboards
 if xinput --list --name-only | grep -q -E 'Planck|Kyria|Corne'; then

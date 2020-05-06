@@ -13,7 +13,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " NERDTree
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
@@ -43,6 +43,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'haishanh/night-owl.vim'
+Plug 'ayu-theme/ayu-vim'
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -93,6 +94,7 @@ let g:airline#extensions#virtualenv#enabled = 0
 " Set colorscheme options
 let g:nord_underline = 1
 let g:nord_uniform_diff_background = 1
+let g:ayucolor="mirage"
 
 " Set true color and colorscheme
 if (has("termguicolors"))

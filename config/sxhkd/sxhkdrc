@@ -17,7 +17,7 @@ super + Return
 
 # program launcher
 super + space
-    rofi -show run -theme nord -font "Fira Code 11"
+    rofi -show run -theme nord
 
 super + k
     keepassxc
@@ -69,8 +69,8 @@ XF86AudioStop
 super + {F1,F2,F3,F4,F5}
     $HOME/.local/bin/changetheme {default,dracula,nord,onedark,sweet}
 
-super + h
-    feh --randomize --no-fehbg --bg-fill ~/Pictures/Wallpaper/Random/*
+super + {_,shift +}h
+    feh --randomize --no-fehbg --bg-fill ~/Pictures/Wallpaper/{Nord/*,Other/Random/*}
 
 #################
 # bspwm hotkeys #

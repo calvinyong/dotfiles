@@ -40,9 +40,11 @@ unalias -m '*'
 
 # ls aliases
 alias ls='ls -vN --color=auto --group-directories-first'
-alias ll='ls -AlhF'
 alias la='ls -A'
-alias l='ls -lh'
+alias l='exa --group-directories-first -l'
+alias ll='l -a'
+# alias ll='ls -AlhF'
+# alias l='ls -lh'
 
 # exa
 # alias ls='exa --group-directories-first'
@@ -70,6 +72,7 @@ alias ytdl-video='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/video
 # Other aliases
 alias ssh-termux='adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022'
 alias weather='curl wttr.in'
+alias pacsearch='pacman -Slq | fzf -m --preview "pacman -Si {1}"'
 
 ###################################
 #   ___  _   _                    #
@@ -101,4 +104,4 @@ source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 
 # Commands at start of session
-source $PYENV_ROOT/versions/3.7.5/envs/python/bin/activate
+source $PYENV_ROOT/versions/3.7.7/envs/python/bin/activate
