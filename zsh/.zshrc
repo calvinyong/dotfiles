@@ -63,8 +63,8 @@ alias please='sudo'
 # Program aliases
 alias vim='nvim'
 alias clock='tty-clock -cbts'
-alias ticker='ticker AAPL MSFT GOOG BTC-USD'
 alias more='less'
+alias df='df -h'
 alias cat='bat --theme base16'
 alias ytdl-audio='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/audio.conf'
 alias ytdl-video='youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/video.conf'
@@ -102,6 +102,3 @@ export KEYTIMEOUT=1
 # fzf
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
-
-# Commands at start of session
-source $PYENV_ROOT/versions/3.7.7/envs/python/bin/activate

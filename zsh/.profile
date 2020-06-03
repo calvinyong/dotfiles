@@ -3,15 +3,11 @@ PATH="$HOME/.local/bin:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
-export NODE_OPTIONS=--max-old-space-size=4096
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export LD_LIBRARY_PATH=/opt/cuda/lib
 
 # gpg agent stuff
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # pyenv stuff
 export PYENV_ROOT="$HOME/.pyenv"

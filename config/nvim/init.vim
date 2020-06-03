@@ -31,17 +31,16 @@ Plug 'airblade/vim-gitgutter'
 
 " Python
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'davidhalter/jedi-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Shougo/echodoc.vim'
 
 " LaTeX
 Plug 'lervag/vimtex'
 
 " Colorschemes
-Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim'
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'rakr/vim-one'
 Plug 'haishanh/night-owl.vim'
 Plug 'ayu-theme/ayu-vim'
 
@@ -114,7 +113,9 @@ call deoplete#custom#var('omni', 'input_patterns', {
 
 " Python
 let g:deoplete#enable_at_startup = 1
-let g:jedi#completions_enabled = 0
+let g:deoplete#sources#jedi#show_docstring = 1
+let g:echodoc_enable_at_startup = 1
+autocmd CompleteDone * silent! pclose!
 
 " Ale
 let g:ale_linters = {
@@ -141,6 +142,7 @@ let g:gitgutter_sign_modified_removed = emoji#for('collision')
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Other
+let g:polyglot_disabled = ['markdown']
 let g:gutentags_cache_dir='~/.cache/ctags'
 let NERDTreeHighlightCursorline = 0
 let g:SuperTabDefaultCompletionType = '<c-n>'
@@ -162,6 +164,8 @@ set expandtab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+
+set updatetime=1000
 
 " Spell check
 autocmd FileType markdown,tex setlocal spell spelllang=en_us
