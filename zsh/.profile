@@ -1,19 +1,27 @@
 # set PATH so it includes user's private bin directories
 PATH="$HOME/.local/bin:$PATH"
 
+# XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+# System dirs
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+export XDG_CONFIG_DIRS="/etc/xdg"
+
+# Other exports
 export EDITOR=nvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export LD_LIBRARY_PATH=/opt/cuda/lib
 
-# gpg agent stuff
+# GPG agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
-# pyenv stuff
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
 fi
 
 # Nord man pages
