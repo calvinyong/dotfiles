@@ -51,15 +51,13 @@ ctrl + Print
     pactl set-sink-volume $(pacmd list-sinks | grep '*' | tail -c 2) {'-5%', '+5%'}
 XF86AudioMute
     pactl set-sink-mute $(pacmd list-sinks | grep '*' | tail -c 2) toggle
-XF86AudioPlay
-    playerctl play-pause
-XF86AudioStop
-    playerctl stop
-{XF86AudioPrev, XF86AudioNext}
+XF86Audio{Play,Stop}
+    playerctl {play-pause,stop}
+XF86Audio{Prev,Next}
     playerctl {previous, next}
 
 # Backlight
-{XF86MonBrightnessDown, XF86MonBrightnessUp}
+XF86MonBrightness{Down,Up}
     xbacklight {-dec, -inc} 5
 
 ###########

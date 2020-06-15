@@ -2,7 +2,15 @@
 
 My dotfiles for a nord desktop theme
 
-# Demos
+![nord](scrots/scrot_desktop_2020-06-06.png)
+
+## Wallpaper
+
+- https://i.imgur.com/CpfD8yB.jpg (Current)
+- https://unsplash.com/photos/vpHCfunwDrQ
+- https://unsplash.com/photos/n3i9j5qPiE4
+
+## Demos
 
 Find the scripts for the demos in the `scripts` folder. Note that these were made for fun, and I do not use any of them on my setup.
 

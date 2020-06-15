@@ -38,40 +38,44 @@ Plug 'Shougo/echodoc.vim'
 Plug 'lervag/vimtex'
 
 " Colorschemes
-"Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arcticicestudio/nord-vim'
 Plug 'rakr/vim-one'
-Plug 'haishanh/night-owl.vim'
-Plug 'ayu-theme/ayu-vim'
 
 " Airline
 Plug 'vim-airline/vim-airline'
 
 " Cool Stuff
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
 Plug 'ervandew/supertab'
 Plug 'dense-analysis/ale'
-Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
 
 " Other plugins
-Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/vim-slash'
 
 " Fun
 Plug 'junegunn/vim-emoji'
-Plug 'dylanaraps/wal.vim'
 
 " Stuff to remember
+" Plug 'Yggdroot/indentLine'
+" Plug 'tpope/vim-repeat'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Plug 'vimwiki/vimwiki'
+" Plug 'dylanaraps/wal.vim'
 " Plug 'tpope/vim-commentary'
 " Plug 'yuttie/comfortable-motion.vim'
-" Plug 'Yggdroot/indentLine'
 
-" Always last one
+" Colorschemes
+" Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'haishanh/night-owl.vim'
+" Plug 'ayu-theme/ayu-vim'
+
+
+" Last one, according to devicons readme
 Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 """"""""""""""""""
@@ -142,7 +146,7 @@ let g:gitgutter_sign_modified_removed = emoji#for('collision')
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Other
-let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['markdown', 'tex']
 let g:gutentags_cache_dir='~/.cache/ctags'
 let NERDTreeHighlightCursorline = 0
 let g:SuperTabDefaultCompletionType = '<c-n>'
@@ -168,7 +172,7 @@ set tabstop=4
 set updatetime=1000
 
 " Spell check
-autocmd FileType markdown,tex setlocal spell spelllang=en_us
+"autocmd FileType markdown,tex setlocal spell spelllang=en_us
 
 """""""""""
 " Keymaps "
