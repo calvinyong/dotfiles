@@ -60,6 +60,10 @@ XF86Audio{Prev,Next}
 XF86MonBrightness{Down,Up}
     xbacklight {-dec, -inc} 5
 
+# Toggle internal display (meant for laptop)
+XF86Display
+    toggle_display
+
 ###########
 # Theming #
 ###########

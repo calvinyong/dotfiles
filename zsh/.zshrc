@@ -63,6 +63,9 @@ alias cat='bat --theme base16'
 alias ytdl-audio="youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/audio.conf"
 alias ytdl-video="youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/video.conf"
 
+# XDG Compliance
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+
 # Other aliases
 alias clock='tty-clock -cbts'
 alias ssh-termux='adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022'

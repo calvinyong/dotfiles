@@ -61,6 +61,10 @@ super + {less, greater}
 {XF86MonBrightnessDown, XF86MonBrightnessUp}
     xbacklight {-dec, -inc} 5
 
+# Toggle internal display (meant for laptop)
+XF86Display
+    toggle_display
+
 #################
 # bspwm hotkeys #
 #################

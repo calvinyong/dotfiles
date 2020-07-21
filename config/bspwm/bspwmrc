@@ -17,7 +17,7 @@ killall -q sxhkd
 feh --no-fehbg --bg-fill $HOME/Pictures/Wallpaper/Nord/wp.jpg
 # Use normal sxhkd config if on planck keyboard
 # Else use config for staggered regular keyboards
-if xinput --list --name-only | grep -q -E 'Planck|Kyria|Corne'; then
+if xinput --list --name-only | grep -q -E "Planck|Kyria|Corne"; then
     sxhkd &
 else
     sxhkd -c $XDG_CONFIG_HOME/sxhkd/sxhkdrc_staggered &
@@ -27,10 +27,10 @@ fi
 $HOME/.config/polybar/launch.sh
 
 # Define desktop/workspaces for each monitor based on computer used
-if [[ $(hostname) == 'thinkpad' ]]; then
+if [[ $(hostname) == "X1C" ]]; then
     bspc monitor eDP1 -d I II III IV
     xinput --disable "Synaptics TM3289-021"
-elif [[ $(hostname) == 'desktop' ]]; then
+elif [[ $(hostname) == "desktop" ]]; then
     bspc monitor DP-2 -d I II III IV
     # bspc monitor HDMI-0 -d V VI VII VIII
 fi
@@ -42,7 +42,7 @@ bspc config window_gap           10
 
 # Layout config
 # bspc config automatic_scheme automatic
-bspc config split_ratio          0.50
+bspc config split_ratio          0.55
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
@@ -52,8 +52,8 @@ bspc config normal_border_color    "#3b4252"
 bspc config presel_feedback_color  "#3b4252"
 
 # Rules
-bspc rule -a Chromium desktop='^2'
-bspc rule -a Signal desktop='^3'
+bspc rule -a Chromium desktop="^2"
+bspc rule -a Signal desktop="^3"
 bspc rule -a Screenkey manage=off
 bspc rule -a KeePassXC state=floating follow=on
 bspc rule -a Zathura state=tiled

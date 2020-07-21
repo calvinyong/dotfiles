@@ -7,8 +7,8 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar
-if [[ $(hostname) == 'desktop' ]]; then
+if [[ $(hostname) == "desktop" ]]; then
     polybar top &
-elif [[ $(hostname) == 'thinkpad' ]]; then
+elif [[ $(hostname) == "X1C" ]]; then
     polybar laptop &
 fi

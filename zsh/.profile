@@ -13,6 +13,7 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 export EDITOR=nvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export LD_LIBRARY_PATH=/opt/cuda/lib
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # GPG agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
