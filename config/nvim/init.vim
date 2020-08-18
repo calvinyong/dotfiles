@@ -34,6 +34,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'Shougo/echodoc.vim'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 " LaTeX
 Plug 'lervag/vimtex'
 
@@ -51,6 +54,7 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
+Plug 'jiangmiao/auto-pairs'
 
 " Other plugins
 Plug 'sheerun/vim-polyglot'
@@ -124,6 +128,7 @@ autocmd CompleteDone * silent! pclose!
 " Ale
 let g:ale_linters = {
     \ 'python': ['flake8'],
+    \ 'rust': ['rls'],
     \}
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -135,6 +140,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_completion_enabled = 0
+"let g:ale_hover_to_preview = 1
 
 " Gitgutter signs
 let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
@@ -146,7 +152,7 @@ let g:gitgutter_sign_modified_removed = emoji#for('collision')
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Other
-let g:polyglot_disabled = ['markdown', 'tex']
+let g:polyglot_disabled = ['markdown', 'tex', 'rust']
 let g:gutentags_cache_dir='~/.cache/ctags'
 let NERDTreeHighlightCursorline = 0
 let g:SuperTabDefaultCompletionType = '<c-n>'

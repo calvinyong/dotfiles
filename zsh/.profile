@@ -9,14 +9,27 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
-# Other exports
+# Other variables
 export EDITOR=nvim
 export RANGER_LOAD_DEFAULT_RC=FALSE
-export LD_LIBRARY_PATH=/opt/cuda/lib
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export LESSHISTFILE=-
+
+# Other paths
+export LD_LIBRARY_PATH=/opt/cuda/lib
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 
 # GPG agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
+# Rust
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+
+# Python
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
