@@ -19,7 +19,11 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Visual
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/goyo.vim'
+Plug 'vim-airline/vim-airline'
+
+" Colorschemes
+Plug 'arcticicestudio/nord-vim'
+Plug 'rakr/vim-one'
 
 " Tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -34,18 +38,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'Shougo/echodoc.vim'
 
-" Rust
+" Language support
 Plug 'rust-lang/rust.vim'
-
-" LaTeX
 Plug 'lervag/vimtex'
-
-" Colorschemes
-Plug 'arcticicestudio/nord-vim'
-Plug 'rakr/vim-one'
-
-" Airline
-Plug 'vim-airline/vim-airline'
 
 " Cool Stuff
 Plug 'justinmk/vim-sneak'
@@ -57,7 +52,9 @@ Plug 'junegunn/vim-slash'
 Plug 'jiangmiao/auto-pairs'
 
 " Other plugins
+let g:polyglot_disabled = ['markdown', 'tex', 'rust']
 Plug 'sheerun/vim-polyglot'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 " Fun
 Plug 'junegunn/vim-emoji'
@@ -70,6 +67,7 @@ Plug 'junegunn/vim-emoji'
 " Plug 'dylanaraps/wal.vim'
 " Plug 'tpope/vim-commentary'
 " Plug 'yuttie/comfortable-motion.vim'
+" Plug 'junegunn/goyo.vim'
 
 " Colorschemes
 " Plug 'dracula/vim', { 'as': 'dracula' }
@@ -94,14 +92,8 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
 
 " Airline
 set noshowmode
-let g:airline_theme = 'nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#virtualenv#enabled = 0
-
-" Set colorscheme options
-let g:nord_underline = 1
-let g:nord_uniform_diff_background = 1
-let g:ayucolor="mirage"
 
 " Set true color and colorscheme
 if (has("termguicolors"))
@@ -109,38 +101,19 @@ if (has("termguicolors"))
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-colorscheme nord
-" highlight Normal guibg=black guifg=white
 
 " LaTex
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
+
+" Deoplete
 call deoplete#custom#var('omni', 'input_patterns', {
         \ 'tex': g:vimtex#re#deoplete
         \})
-
-" Python
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
 let g:echodoc_enable_at_startup = 1
 autocmd CompleteDone * silent! pclose!
-
-" Ale
-let g:ale_linters = {
-    \ 'python': ['flake8'],
-    \ 'rust': ['rls'],
-    \}
-let g:ale_fixers = {
-    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \}
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_completion_enabled = 0
-"let g:ale_hover_to_preview = 1
 
 " Gitgutter signs
 let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
@@ -151,12 +124,14 @@ let g:gitgutter_sign_modified_removed = emoji#for('collision')
 " Vista
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
+" Sneak
+let g:sneak#label = 1
+"highlight Sneak guifg=white guibg=black ctermfg=white ctermbg=black
+
 " Other
-let g:polyglot_disabled = ['markdown', 'tex', 'rust']
 let g:gutentags_cache_dir='~/.cache/ctags'
 let NERDTreeHighlightCursorline = 0
 let g:SuperTabDefaultCompletionType = '<c-n>'
-let g:sneak#label = 1
 set completefunc=emoji#complete
 " let g:NERDTreeLimitedSyntax = 1
 
@@ -164,30 +139,9 @@ set completefunc=emoji#complete
 " vim config "
 """"""""""""""
 
-" Line numbering
-set nu
-set rnu
+source $XDG_CONFIG_HOME/nvim/themes/nord.vim
 
-" Use spaces instead of tabs
-set expandtab
+source $XDG_CONFIG_HOME/nvim/plug-configs/ale.vim
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-set updatetime=1000
-
-" Spell check
-"autocmd FileType markdown,tex setlocal spell spelllang=en_us
-
-"""""""""""
-" Keymaps "
-"""""""""""
-
-let mapleader = " "
-let maplocalleader = " "
-
-map <F7> :NERDTreeToggle<CR>
-nmap <F8> :Vista!!<CR>
-" Run current file
-nnoremap <F9> :!%:p<Enter>
+source $XDG_CONFIG_HOME/nvim/general.vim
+source $XDG_CONFIG_HOME/nvim/keymaps.vim

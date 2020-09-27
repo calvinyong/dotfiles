@@ -95,7 +95,7 @@ super + ctrl + {comma,period}
     bspc node @ -F {horizontal,vertical}
 
 # Rotate leaves of tree
-super + shift + {comma,period}
+super + {comma,period}
     bspc node @/ -R {90,270}
 
 # Change window gap
@@ -118,9 +118,13 @@ super + {t,s,r}
 super + {_,shift + }{m,n,e,i}
     bspc node -{f,s} {west,south,north,east}
 
-# focus or send to the given desktop
-super + {_,shift + }{q,w,f,p,b,j,l,u,y}
-    bspc {desktop -f,node -d} '^{1-9}' --follow
+# focus desktop
+super + {q,w,f,p,b,j,l,u,y}
+    bspc desktop -f '^{1-9}'
+
+# send to the desktop
+super + shift + {q,w,f,p,b,j,l,u,y}
+    bspc node -d '^{1-9}' --follow
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
