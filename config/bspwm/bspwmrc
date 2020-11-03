@@ -20,9 +20,9 @@ feh --no-fehbg --bg-fill "$HOME"/Pictures/Wallpaper/Nord/wp.jpg
 if xinput --list --name-only | grep -q -E "Planck|Kyria|Corne"; then
     sxhkd &
 else
-    sxhkd -c "$XDG_CONFIG_HOME"/sxhkd/sxhkdrc_staggered &
     setxkbmap -layout us -option ctrl:nocaps
     setxkbmap -layout us -option altwin:swap_alt_win
+    sxhkd -c "$XDG_CONFIG_HOME"/sxhkd/sxhkdrc_staggered &
 fi
 "$HOME"/.config/polybar/launch.sh
 
@@ -31,7 +31,7 @@ if [[ $(hostname) == "X1C" ]]; then
     bspc monitor eDP1 -d I II III IV
     xinput --disable "Synaptics TM3289-021"
 elif [[ $(hostname) == "desktop" ]]; then
-    bspc monitor DP-2 -d I II III IV
+    bspc monitor DP-2 -d I II III IV V
     # bspc monitor HDMI-0 -d V VI VII VIII
 fi
 

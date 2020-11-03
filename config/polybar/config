@@ -52,8 +52,7 @@ padding-right = 2
 module-margin = 1.5
 modules-left = bspwm
 modules-center = date
-modules-right = pulseaudio cpu memory eth temperature
-
+modules-right = pulseaudio cpu memory eth pihole temperature
 
 [bar/laptop]
 ; monitor = DP-2
@@ -83,9 +82,11 @@ modules-left = bspwm
 modules-center = date
 modules-right = pulseaudio cpu memory wlan battery temperature
 
+
 ;=========;
 ; Modules ;
 ;=========;
+
 
 [module/bspwm]
 type = internal/bspwm
@@ -95,7 +96,10 @@ enable-scroll = false
 ws-icon-0 = I;
 ws-icon-1 = II;
 ws-icon-2 = III;
+ws-icon-3 = V;
 ws-icon-default = 
+;ws-icon-default = 
+;ws-icon-default = 
 
 label-focused = %icon%
 label-focused-foreground = ${nord.cyan}
@@ -176,6 +180,14 @@ label-connected = %essid%
 format-disconnected-prefix = " "
 format-disconnected-prefix-foreground = ${nord.red}
 label-disconnected = Not Connected
+
+[module/pihole]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${nord.cyan}
+exec = curl http://pi.hole/admin/api.php\?summary -s | jq -r '"\(.ads_percentage_today)%"'
+click-left = chromium pi.hole/admin
+interval = 60
 
 [module/battery]
 type = internal/battery

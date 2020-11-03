@@ -9,15 +9,18 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
-# Other variables
-export EDITOR=nvim
-export RANGER_LOAD_DEFAULT_RC=FALSE
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export LESSHISTFILE=-
-
 # Other paths
 export LD_LIBRARY_PATH=/opt/cuda/lib
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+
+# Other variables
+export EDITOR=nvim
+export RANGER_LOAD_DEFAULT_RC=FALSE
+export LESSHISTFILE=-
+#export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+# fzf
+export FZF_DEFAULT_OPTS='--color=16'
 
 # GPG agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
@@ -26,6 +29,10 @@ export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+
+# Node
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 
 # Python
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
@@ -46,9 +53,3 @@ export LESS_TERMCAP_so=$'\E[01;40;35m'
 export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
-
-# fzf colors
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
---color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
-'

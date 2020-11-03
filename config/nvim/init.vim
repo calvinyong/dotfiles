@@ -7,9 +7,128 @@
 "                                         "
 """""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""
+" General Settings "
+""""""""""""""""""""
+
+" Line numbering
+set nu
+set rnu
+
+" Use spaces instead of tabs
+set expandtab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+set updatetime=1000
+
+" Spell check
+autocmd FileType markdown,tex setlocal spell spelllang=en_us
+
+
+""""""""""""
+" Keybinds "
+""""""""""""
+
+" Space for leader key
+let mapleader = " "
+let maplocalleader = " "
+
+nnoremap <Leader>w <C-w>
+nmap K :ALEHover<CR>
+map <F7> :NERDTreeToggle<CR>
+nmap <F8> :Vista!!<CR>
+" Run current file
+nnoremap <F9> :!%:p<Enter>
+
+
+""""""""""""""""""
+" Visual Options "
+""""""""""""""""""
+
+" Startify
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
+                           \ {'b': '~/.config/bspwm/bspwmrc'},
+                           \ {'s': '~/.config/sxhkd/sxhkdrc'},
+                           \ {'z': '~/.zshrc'} ]
+
+" Nord colorscheme options
+let g:nord_underline = 1
+let g:nord_italic = 1
+let g:nord_uniform_diff_background = 1
+
+" Airline
+set noshowmode
+" let g:airline_theme = 'onedark'
+let g:airline_theme = 'nord'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#virtualenv#enabled = 0
+
+" True color
+if (has("termguicolors"))
+    set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+
+""""""""""""""""""
+" Plugin Options "
+""""""""""""""""""
+
+" Some of these options like polyglot_disabled need
+" to be set before the plugin is sourced
+
+" Ale
+let g:ale_linters = {
+    \ 'python': ['flake8', 'mypy'],
+    \ 'rust': ['analyzer'],
+    \}
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \}
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_completion_enabled = 0
+"let g:ale_hover_to_preview = 1
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+let g:echodoc_enable_at_startup = 1
+autocmd CompleteDone * silent! pclose!
+
+" LaTex
+let g:vimtex_view_method = 'zathura'
+let g:tex_flavor = 'latex'
+
+" Vista
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Sneak
+let g:sneak#label = 1
+"highlight Sneak guifg=white guibg=black ctermfg=white ctermbg=black
+
+" Polyglot
+let g:polyglot_disabled = ['markdown', 'tex', 'rust']
+
+" Other
+let g:gutentags_cache_dir='~/.cache/ctags'
+let NERDTreeHighlightCursorline = 0
+let g:SuperTabDefaultCompletionType = '<c-n>'
+" let g:NERDTreeLimitedSyntax = 1
+
+
 """""""""""
 " Plugins "
 """""""""""
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " NERDTree
@@ -23,7 +142,7 @@ Plug 'vim-airline/vim-airline'
 
 " Colorschemes
 Plug 'arcticicestudio/nord-vim'
-Plug 'rakr/vim-one'
+"Plug 'rakr/vim-one'
 
 " Tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -52,12 +171,11 @@ Plug 'junegunn/vim-slash'
 Plug 'jiangmiao/auto-pairs'
 
 " Other plugins
-let g:polyglot_disabled = ['markdown', 'tex', 'rust']
 Plug 'sheerun/vim-polyglot'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
-" Fun
-Plug 'junegunn/vim-emoji'
+" Last one, according to devicons readme
+Plug 'ryanoasis/vim-devicons'
 
 " Stuff to remember
 " Plug 'Yggdroot/indentLine'
@@ -73,75 +191,18 @@ Plug 'junegunn/vim-emoji'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'haishanh/night-owl.vim'
 " Plug 'ayu-theme/ayu-vim'
-
-
-" Last one, according to devicons readme
-Plug 'ryanoasis/vim-devicons'
+" Plug 'tyrannicaltoucan/vim-deep-space'
 
 call plug#end()
 
-""""""""""""""""""
-" Plugin Options "
-""""""""""""""""""
 
-" Startify
-let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
-                           \ {'b': '~/.config/bspwm/bspwmrc'},
-                           \ {'s': '~/.config/sxhkd/sxhkdrc'},
-                           \ {'z': '~/.zshrc'} ]
-
-" Airline
-set noshowmode
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#virtualenv#enabled = 0
-
-" Set true color and colorscheme
-if (has("termguicolors"))
-    set termguicolors
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
-" LaTex
-let g:vimtex_view_method = 'zathura'
-let g:tex_flavor = 'latex'
+"""""""""""""""""""""""""""""""""
+" Options after plugins sourced "
+"""""""""""""""""""""""""""""""""
 
 " Deoplete
 call deoplete#custom#var('omni', 'input_patterns', {
         \ 'tex': g:vimtex#re#deoplete
         \})
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
-let g:echodoc_enable_at_startup = 1
-autocmd CompleteDone * silent! pclose!
 
-" Gitgutter signs
-let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-let g:gitgutter_sign_modified_removed = emoji#for('collision')
-
-" Vista
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-" Sneak
-let g:sneak#label = 1
-"highlight Sneak guifg=white guibg=black ctermfg=white ctermbg=black
-
-" Other
-let g:gutentags_cache_dir='~/.cache/ctags'
-let NERDTreeHighlightCursorline = 0
-let g:SuperTabDefaultCompletionType = '<c-n>'
-set completefunc=emoji#complete
-" let g:NERDTreeLimitedSyntax = 1
-
-""""""""""""""
-" vim config "
-""""""""""""""
-
-source $XDG_CONFIG_HOME/nvim/themes/nord.vim
-
-source $XDG_CONFIG_HOME/nvim/plug-configs/ale.vim
-
-source $XDG_CONFIG_HOME/nvim/general.vim
-source $XDG_CONFIG_HOME/nvim/keymaps.vim
+colorscheme nord
