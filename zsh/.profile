@@ -25,6 +25,10 @@ export FZF_DEFAULT_OPTS='--color=16'
 # GPG agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
+# Android Studio / adb
+export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
+
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
@@ -41,9 +45,6 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
 
 # Nord man pages
 export LESS_TERMCAP_mb=$'\E[1;34m'

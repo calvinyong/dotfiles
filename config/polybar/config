@@ -122,7 +122,8 @@ interval = 5
 
 date = "%a, %b %d"
 time = %I:%M %p
-label =   %date%    %time%
+;label =   %date%    %time%
+label = %{A1:notify-send -i /usr/share/icons/Arc/mimetypes/24/vcalendar.png "$(cal -n 2)":}   %date%    %time% %{A}
 
 [module/pulseaudio]
 type = internal/pulseaudio
