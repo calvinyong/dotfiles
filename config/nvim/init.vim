@@ -129,7 +129,7 @@ let g:SuperTabDefaultCompletionType = '<c-n>'
 " Plugins "
 """""""""""
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 " NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -142,7 +142,7 @@ Plug 'vim-airline/vim-airline'
 
 " Colorschemes
 Plug 'arcticicestudio/nord-vim'
-"Plug 'rakr/vim-one'
+Plug 'rakr/vim-one'
 
 " Tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -173,6 +173,7 @@ Plug 'jiangmiao/auto-pairs'
 " Other plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'junegunn/goyo.vim'
 
 " Last one, according to devicons readme
 Plug 'ryanoasis/vim-devicons'

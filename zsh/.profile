@@ -15,8 +15,8 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 
 # Other variables
 export EDITOR=nvim
-export RANGER_LOAD_DEFAULT_RC=FALSE
 export LESSHISTFILE=-
+#export RANGER_LOAD_DEFAULT_RC=FALSE
 #export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # fzf
@@ -45,6 +45,9 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Go
+# export GOPATH="$XDG_DATA_HOME"/go
 
 # Nord man pages
 export LESS_TERMCAP_mb=$'\E[1;34m'
