@@ -25,7 +25,8 @@ set tabstop=4
 set updatetime=1000
 
 " Spell check
-autocmd FileType markdown,tex setlocal spell spelllang=en_us
+"autocmd FileType markdown,tex setlocal spell spelllang=en_us
+autocmd FileType tex setlocal spell spelllang=en_us
 
 
 """"""""""""

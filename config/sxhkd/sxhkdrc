@@ -48,7 +48,7 @@ ctrl + Print
 
 # Music controls
 {XF86AudioLowerVolume, XF86AudioRaiseVolume}
-    pactl set-sink-volume $(pacmd list-sinks | grep '*' | awk '\{print $NF\}') {'-5%', '+5%'}
+    pactl set-sink-volume $(pacmd list-sinks | grep '*' | awk '\{print $NF\}') {'-2%', '+2%'}
 XF86AudioMute
     pactl set-sink-mute $(pacmd list-sinks | grep '*' | awk '\{print $NF\}') toggle
 XF86Audio{Play,Stop}
