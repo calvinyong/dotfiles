@@ -1,41 +1,98 @@
-##############################
-#            _               #
-#    _______| |__  _ __ ___  #
-#   |_  / __| '_ \| '__/ __| #
-#  _ / /\__ \ | | | | | (__  #
-# (_)___|___/_| |_|_|  \___| #
-#                            #
-##############################
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-ZSH_THEME="calvin-theme"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Which plugins would you like to load?
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git fast-syntax-highlighting)
-
-source $ZSH/oh-my-zsh.sh
+################################
+#              __              #
+#  ____  _____/ /_  __________ #
+# /_  / / ___/ __ \/ ___/ ___/ #
+#  / /_(__  ) / / / /  / /__   #
+# /___/____/_/ /_/_/   \___/   #
+#                              #
+################################
 
 
-#####################################
-#    / \  | (_) __ _ ___  ___  ___  #
-#   / _ \ | | |/ _` / __|/ _ \/ __| #
-#  / ___ \| | | (_| \__ \  __/\__ \ #
-# /_/   \_\_|_|\__,_|___/\___||___/ #
-#####################################
+# Load all stock functions (from $fpath files) called below.
+autoload -U compaudit compinit
 
-# Remove aliases (aliases coming from plugins)
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$(hostname)-${ZSH_VERSION}"
+compinit -i -C -d "${ZSH_COMPDUMP}"
+
+# Completion
+zmodload zsh/complist
+
+zstyle ':completion:*:*:*:*:*' menu select
+# Case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+# disable named-directories autocompletion
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
+
+# _ and - are interchangable
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+
+
+##########
+# Colors #
+##########
+
+# Theme and appearance
+# ls colors
+autoload -U colors && colors
+
+# Correct colors in tab completion
+if [[ -z "$LS_COLORS" ]]; then
+    (( $+commands[dircolors] )) && eval "$(dircolors -b)"
+fi
+
+# Take advantage of $LS_COLORS for completion as well.
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+
+#######
+# URL #
+#######
+
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
+
+###########
+# Options #
+###########
+
+# Vim keys
+KEYTIMEOUT=1
+bindkey -v
+
+setopt AUTO_CD
+# Allow comments in interactive mode
+setopt INTERACTIVECOMMENTS
+# Disable C-s to freeze terminal
+unsetopt FLOWCONTROL
+
+###########
+# History #
+###########
+
+HISTSIZE=2000
+SAVEHIST=2000
+HISTFILE=$XDG_CACHE_HOME/zsh/history
+setopt EXTENDED_HISTORY        # Write the history file in the ":start:elapsed;command" format.
+setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS        # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS    # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS       # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE       # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries in the history file.
+setopt HIST_VERIFY             # Show command with history expansion to user before running it
+
+
+###########
+# Aliases #
+###########
+
 unalias -m '*'
 
 # ls aliases
@@ -50,10 +107,7 @@ alias ll='l -a'
 # color aliases
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-
-# Cute aliases
-alias plz='sudo'
-alias please='sudo'
+alias ip='ip -c'
 
 # Program aliases
 alias vim='nvim'
@@ -67,40 +121,49 @@ alias ytdl-video="youtube-dl --config-location $XDG_CONFIG_HOME/youtube-dl/video
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 # Other aliases
-alias clock='tty-clock -cbts'
 alias ssh-termux='adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022'
 alias weather='curl wttr.in'
-alias pacsearch='pacman -Slq | fzf -m --preview "pacman -Si {1}"'
 
-###################################
-#   ___  _   _                    #
-#  / _ \| |_| |__   ___ _ __ ___  #
-# | | | | __| '_ \ / _ \ '__/ __| #
-# | |_| | |_| | | |  __/ |  \__ \ #
-#  \___/ \__|_| |_|\___|_|  |___/ #
-#                                 #
-###################################
 
-# History
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
-setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+##########
+# Prompt #
+##########
 
-# vim keys
-bindkey -v
-export KEYTIMEOUT=1
+setopt PROMPT_SUBST
+
+PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+#PROMPT+='%{$fg[magenta]%}$HOST %{$fg_bold[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+
+###########
+# Sources #
+###########
 
 # fzf
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/git.zsh
+source $XDG_CONFIG_HOME/zsh/git.zsh
+
+# https://github.com/zdharma/fast-syntax-highlighting
+source $XDG_CONFIG_HOME/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+#
+# Other useful options
+#
+
+# Vim keys in tab complete menu
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -v '^?' backward-delete-char
+
+#setopt long_list_jobs

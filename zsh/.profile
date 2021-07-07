@@ -11,7 +11,7 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 
 # Other variables
 export EDITOR=nvim
-export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+export LESSHISTFILE=-
 #export RANGER_LOAD_DEFAULT_RC=FALSE
 #export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
@@ -49,6 +49,9 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+
+# Others
+#export KDEHOME="$XDG_CONFIG_HOME"/kde
 
 # Nord man pages
 export LESS_TERMCAP_mb=$'\E[1;34m'

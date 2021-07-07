@@ -27,7 +27,7 @@ fi
 "$HOME"/.config/polybar/launch.sh
 
 # Define desktop/workspaces for each monitor based on computer used
-if [ "$(hostname)" = "X1C" ]; then
+if [ "$(hostname)" = "think" ]; then
     bspc monitor eDP1 -d I II III IV V
     xinput --disable "Synaptics TM3289-021"
     xinput set-prop "TPPS/2 Elan Trackpoint" "libinput Accel Speed" 1

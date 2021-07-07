@@ -33,7 +33,7 @@ height = 25
 offset-x = 0
 offset-y = 0
 cursor-click = pointer
-font-0 = FuraCode Nerd Font:size=10;1
+font-0 = FiraCode Nerd Font:size=10;1
 wm-restack = bspwm
 
 ;background = ${nord.background}
@@ -51,7 +51,7 @@ padding-right = 2
 
 module-margin = 1.5
 modules-left = bspwm
-modules-center = date
+modules-center = date time weather
 modules-right = pulseaudio cpu memory eth pihole temperature
 
 [bar/laptop]
@@ -79,8 +79,8 @@ padding-right = 2
 
 module-margin = 1.5
 modules-left = bspwm
-modules-center = date
-modules-right = pulseaudio cpu memory wlan battery temperature
+modules-center = date time weather
+modules-right = pulseaudio cpu memory wireless battery temperature
 
 
 ;=========;
@@ -96,34 +96,53 @@ enable-scroll = false
 ws-icon-0 = I;
 ws-icon-1 = II;
 ws-icon-2 = III;
-ws-icon-3 = IV;
-ws-icon-default = 
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-default = 
 ;ws-icon-default = 
-;ws-icon-default = 
 
 label-focused = %icon%
 label-focused-foreground = ${nord.cyan}
 label-focused-padding = 2
 
 label-occupied = %icon%
+label-occupied-foreground = ${nord.foreground}
 label-occupied-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${nord.foreground}
+label-empty-padding = 2
 
 label-urgent = %icon%
 label-urgent-foreground = ${nord.red}
 label-urgent-padding = 2
 
-label-empty = %icon%
-label-empty-foreground = ${nord.foreground}
-label-empty-padding = 2
+; [module/date]
+; type = internal/date
+; interval = 5
+;
+; date = "%a, %b %d"
+; time = "%I:%M %p"
+; ;label =   %date%    %time%
+; label = %{A1:notify-send -i /usr/share/icons/Arc/mimetypes/24/vcalendar.png "$(cal -n 2)":} %{F#88c0d0} %{F-} %date%  %{F#88c0d0}%{F-}  %time%%{A}
 
 [module/date]
 type = internal/date
 interval = 5
 
 date = "%a, %b %d"
-time = %I:%M %p
-;label =   %date%    %time%
-label = %{A1:notify-send -i /usr/share/icons/Arc/mimetypes/24/vcalendar.png "$(cal -n 2)":}   %date%    %time% %{A}
+format-prefix = "  "
+format-prefix-foreground = ${nord.cyan}
+label = %{A1:notify-send -i /usr/share/icons/breeze-dark/mimetypes/24/x-office-calendar.svg "$(cal -n 2)":}%date%%{A}
+
+[module/time]
+type = internal/date
+interval = 5
+
+time = "%I:%M %p"
+format-prefix = "  "
+format-prefix-foreground = ${nord.cyan}
+label = %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -146,9 +165,9 @@ ramp-volume-4 = 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = 
+format-prefix = " "
 format-prefix-foreground = ${nord.cyan}
-label = %percentage:2%%
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
@@ -164,31 +183,24 @@ interval = 2
 
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${nord.cyan}
-label-connected = %local_ip%   %downspeed%  %upspeed%
+;label-connected = %local_ip%   %downspeed%  %upspeed%
+label-connected = %local_ip%  %{F#88c0d0}%{F-} %downspeed% %{F#88c0d0}%{F-} %upspeed%
 
 format-disconnected-prefix = " "
 format-disconnected-prefix-foreground = ${nord.red}
 
-[module/wlan]
+[module/wireless]
 type = internal/network
 interface = wlp2s0
 interval = 2
 
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${nord.cyan}
-label-connected = %essid%
+label-connected = %essid%  %{F#88c0d0}%{F-} %downspeed% %{F#88c0d0}%{F-} %upspeed%
 
 format-disconnected-prefix = " "
 format-disconnected-prefix-foreground = ${nord.red}
-label-disconnected = Not Connected
-
-[module/pihole]
-type = custom/script
-format-prefix = " "
-format-prefix-foreground = ${nord.cyan}
-exec = curl http://pi.hole/admin/api.php\?summary -s | jq -r '"\(.ads_percentage_today)%"'
-click-left = chromium pi.hole/admin
-interval = 60
+label-disconnected = Disconnected
 
 [module/battery]
 type = internal/battery
@@ -219,7 +231,7 @@ ramp-capacity-foreground = ${nord.cyan}
 type = internal/temperature
 warn-temperature = 70
 ; Tdie
-hwmon-path = /sys/class/hwmon/hwmon1/temp2_input
+hwmon-path = /sys/class/hwmon/hwmon2/temp2_input
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
@@ -234,5 +246,27 @@ ramp-2 = 
 ramp-3 = 
 ramp-4 = 
 ramp-foreground = ${nord.cyan}
+
+[module/pihole]
+type = custom/script
+
+format-prefix = " "
+format-prefix-foreground = ${nord.cyan}
+
+exec = curl -s http://pi.hole/admin/api.php\?summary | jq -r '"\(.ads_percentage_today)%"'
+click-left = chromium pi.hole/admin
+interval = 60
+
+[module/weather]
+type = custom/script
+
+; Hardcode weather icon for now
+format-prefix = "  "
+format-prefix-foreground = ${nord.cyan}
+
+; Strip the first + character
+exec = curl -s "wttr.in/?format=%t" | cut -c2-
+click-left = notify-send "$(curl -s "wttr.in/?0?T?q")"
+interval = 600
 
 ; vim:ft=dosini

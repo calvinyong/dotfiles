@@ -9,6 +9,6 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # Launch bar
 if [[ $(hostname) == "desktop" ]]; then
     polybar top &
-elif [[ $(hostname) == "X1C" ]]; then
+elif [[ $(hostname) == "think" ]]; then
     polybar laptop &
 fi
