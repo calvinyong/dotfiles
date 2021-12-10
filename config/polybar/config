@@ -27,7 +27,7 @@ margin-top = 0
 margin-bottom = 0
 
 [bar/top]
-; monitor = DisplayPort-1
+; monitor = DP-2
 width = 100%
 height = 25
 offset-x = 0
@@ -230,8 +230,8 @@ ramp-capacity-foreground = ${nord.cyan}
 [module/temperature]
 type = internal/temperature
 warn-temperature = 70
-; Tdie
-hwmon-path = /sys/class/hwmon/hwmon2/temp2_input
+; Tctl, maybe prefer Tdie
+hwmon-path = /sys/class/hwmon/hwmon2/temp1_input
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>

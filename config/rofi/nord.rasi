@@ -52,6 +52,11 @@ element {
     text-color: @nord6;
 }
 
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
 element.selected {
     background-color: @nord1;
     text-color: @nord8;

@@ -1,11 +1,11 @@
-"""""""""""""""""""""""""""""""""""""""""""
-"  _       _ _               _            "
-" (_)_ __ (_) |_      __   _(_)_ __ ___   "
-" | | '_ \| | __|     \ \ / / | '_ ` _ \  "
-" | | | | | | |_   _   \ V /| | | | | | | "
-" |_|_| |_|_|\__| (_)   \_/ |_|_| |_| |_| "
-"                                         "
-"""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""
+"                           _          "
+"    ____  ___  ____ _   __(_)___ ___  "
+"   / __ \/ _ \/ __ \ | / / / __ `__ \ "
+"  / / / /  __/ /_/ / |/ / / / / / / / "
+" /_/ /_/\___/\____/|___/_/_/ /_/ /_/  "
+"                                      "
+""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""
 " General Settings "
@@ -28,6 +28,7 @@ set updatetime=1000
 "autocmd FileType markdown,tex setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
 
+" set wildmode=longest,list,full
 
 """"""""""""
 " Keybinds "
@@ -70,8 +71,8 @@ let g:airline#extensions#virtualenv#enabled = 0
 " True color
 if (has("termguicolors"))
     set termguicolors
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 
@@ -194,6 +195,7 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'haishanh/night-owl.vim'
 " Plug 'ayu-theme/ayu-vim'
 " Plug 'tyrannicaltoucan/vim-deep-space'
+" Plug 'folke/tokyonight.nvim'
 
 call plug#end()
 

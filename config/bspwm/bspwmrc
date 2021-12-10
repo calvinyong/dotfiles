@@ -32,9 +32,10 @@ if [ "$(hostname)" = "think" ]; then
     xinput --disable "Synaptics TM3289-021"
     xinput set-prop "TPPS/2 Elan Trackpoint" "libinput Accel Speed" 1
 elif [ "$(hostname)" = "desktop" ]; then
-    xrandr --output DisplayPort-1 --mode 1920x1080 --rate 144 --set TearFree on
-    bspc monitor DisplayPort-1 -d I II III IV V
-    # bspc monitor HDMI-0 -d V VI VII VIII
+    # xrandr --output DP-2 --mode 1920x1080 --rate 144 --set TearFree on
+    xrandr --output DP-2 --mode 1920x1080 --rate 144
+    bspc monitor DP-2 -d I II III IV V
+    # bspc monitor HDMI-1 -d V VI VII VIII
 fi
 
 # Window config
