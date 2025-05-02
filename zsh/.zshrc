@@ -11,7 +11,7 @@
 # Load all stock functions (from $fpath files) called below.
 autoload -U compaudit compinit
 
-ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$(hostname)-${ZSH_VERSION}"
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$(hostnamectl hostname)-${ZSH_VERSION}"
 compinit -i -C -d "${ZSH_COMPDUMP}"
 
 # Completion
@@ -62,9 +62,10 @@ zle -N self-insert url-quote-magic
 # Options #
 ###########
 
-# Vim keys
-KEYTIMEOUT=1
-bindkey -v
+# Emacs keybindings
+bindkey -e
+
+# KEYTIMEOUT=1
 
 setopt AUTO_CD
 # Allow comments in interactive mode
@@ -76,8 +77,8 @@ unsetopt FLOWCONTROL
 # History #
 ###########
 
-HISTSIZE=2000
-SAVEHIST=2000
+HISTSIZE=1000
+SAVEHIST=1000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 setopt EXTENDED_HISTORY        # Write the history file in the ":start:elapsed;command" format.
 setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicate entries first when trimming history.
@@ -87,6 +88,7 @@ setopt HIST_FIND_NO_DUPS       # Do not display a line previously found.
 setopt HIST_IGNORE_SPACE       # Don't record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries in the history file.
 setopt HIST_VERIFY             # Show command with history expansion to user before running it
+setopt SHARE_HISTORY
 
 
 ###########
@@ -98,9 +100,9 @@ unalias -m '*'
 # ls aliases
 alias ls='ls -vN --color=auto --group-directories-first'
 alias la='ls -A'
-alias l='exa --group-directories-first -l'
+alias l='eza --group-directories-first --no-quotes -l'
 alias ll='l -a'
-# If don't have exa
+# If don't have eza
 # alias ll='ls -AlhF'
 # alias l='ls -lh'
 
@@ -114,6 +116,7 @@ alias vim='nvim'
 alias more='less'
 alias df='df -h'
 alias cat='bat --theme base16'
+alias htop='htop --readonly'
 alias ytdl-audio="yt-dlp --config-location $XDG_CONFIG_HOME/ytdl/audio.conf"
 alias ytdl-video="yt-dlp --config-location $XDG_CONFIG_HOME/ytdl/video.conf"
 
@@ -125,22 +128,6 @@ alias ssh-termux='adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022'
 alias weather='curl wttr.in'
 
 
-##########
-# Prompt #
-##########
-
-setopt PROMPT_SUBST
-
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-#PROMPT+='%{$fg[magenta]%}$HOST %{$fg_bold[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-
-
 ###########
 # Sources #
 ###########
@@ -149,11 +136,16 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/git.zsh
-source $XDG_CONFIG_HOME/zsh/git.zsh
-
 # https://github.com/zdharma/fast-syntax-highlighting
 source $XDG_CONFIG_HOME/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+
+###################
+# Starship Prompt #
+###################
+
+eval "$(starship init zsh)"
+
 
 #
 # Other useful options
