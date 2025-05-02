@@ -22,6 +22,9 @@ super + space
 super + k
     keepassxc
 
+super + c
+    chromium --incognito
+
 # make sxhkd reload its configuration files:
 super + Escape
     pkill -USR1 -x sxhkd
@@ -48,9 +51,9 @@ ctrl + Print
 
 # Music controls
 {XF86AudioLowerVolume, XF86AudioRaiseVolume}
-    pactl set-sink-volume $(pacmd list-sinks | grep '*' | awk '\{print $NF\}') {'-2%', '+2%'}
+    pactl set-sink-volume $(pactl get-default-sink) {'-2.5%', '+2.5%'}
 XF86AudioMute
-    pactl set-sink-mute $(pacmd list-sinks | grep '*' | awk '\{print $NF\}') toggle
+    pactl set-sink-mute $(pactl get-default-sink) toggle
 XF86Audio{Play,Stop}
     playerctl {play-pause,stop}
 XF86Audio{Prev,Next}

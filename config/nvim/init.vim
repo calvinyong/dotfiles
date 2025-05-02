@@ -22,6 +22,13 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 
+" Case insensitive on lower case, sensitive on uppercase
+set ignorecase
+set smartcase
+
+" Break at convenient points rather than last character
+set linebreak
+
 set updatetime=1000
 
 " Spell check
@@ -29,6 +36,8 @@ set updatetime=1000
 autocmd FileType tex setlocal spell spelllang=en_us
 
 " set wildmode=longest,list,full
+" set smoothscroll
+
 
 """"""""""""
 " Keybinds "
@@ -55,6 +64,7 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
                            \ {'b': '~/.config/bspwm/bspwmrc'},
                            \ {'s': '~/.config/sxhkd/sxhkdrc'},
                            \ {'z': '~/.zshrc'} ]
+let g:startify_files_number = 5
 
 " Nord colorscheme options
 let g:nord_underline = 1
@@ -68,13 +78,6 @@ let g:airline_theme = 'nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#virtualenv#enabled = 0
 
-" True color
-if (has("termguicolors"))
-    set termguicolors
-    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
 
 """"""""""""""""""
 " Plugin Options "
@@ -85,7 +88,7 @@ endif
 
 " Ale
 let g:ale_linters = {
-    \ 'python': ['flake8', 'mypy'],
+    \ 'python': ['ruff', 'mypy'],
     \ 'rust': ['analyzer'],
     \}
 let g:ale_fixers = {
@@ -110,9 +113,6 @@ autocmd CompleteDone * silent! pclose!
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
 
-" Vista
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
 " Sneak
 let g:sneak#label = 1
 "highlight Sneak guifg=white guibg=black ctermfg=white ctermbg=black
@@ -121,7 +121,6 @@ let g:sneak#label = 1
 let g:polyglot_disabled = ['markdown', 'tex', 'rust']
 
 " Other
-let g:gutentags_cache_dir='~/.cache/ctags'
 let NERDTreeHighlightCursorline = 0
 let g:SuperTabDefaultCompletionType = '<c-n>'
 " let g:NERDTreeLimitedSyntax = 1
@@ -144,11 +143,7 @@ Plug 'vim-airline/vim-airline'
 
 " Colorschemes
 Plug 'arcticicestudio/nord-vim'
-Plug 'rakr/vim-one'
-
-" Tags
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'liuchengxu/vista.vim'
+Plug 'folke/tokyonight.nvim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -165,37 +160,31 @@ Plug 'lervag/vimtex'
 
 " Cool Stuff
 Plug 'justinmk/vim-sneak'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'jiangmiao/auto-pairs'
 
 " Other plugins
-Plug 'sheerun/vim-polyglot'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'junegunn/goyo.vim'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 " Last one, according to devicons readme
 Plug 'ryanoasis/vim-devicons'
 
+" Colorschemes
+" Plug 'oxfist/night-owl.nvim'
+" Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
 " Stuff to remember
 " Plug 'Yggdroot/indentLine'
-" Plug 'tpope/vim-repeat'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Plug 'vimwiki/vimwiki'
 " Plug 'dylanaraps/wal.vim'
-" Plug 'tpope/vim-commentary'
 " Plug 'yuttie/comfortable-motion.vim'
 " Plug 'junegunn/goyo.vim'
-
-" Colorschemes
-" Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'haishanh/night-owl.vim'
-" Plug 'ayu-theme/ayu-vim'
-" Plug 'tyrannicaltoucan/vim-deep-space'
-" Plug 'folke/tokyonight.nvim'
 
 call plug#end()
 
@@ -210,3 +199,6 @@ call deoplete#custom#var('omni', 'input_patterns', {
         \})
 
 colorscheme nord
+
+" Don't highlight _ in markdown
+hi link markdownError Normal

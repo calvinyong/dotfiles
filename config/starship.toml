@@ -1,22 +1,28 @@
-# Inserts a blank line between shell prompts
+# Robby Russell like theme from omz
+
+format = """
+$character\
+$directory\
+$git_branch\
+$git_status"""
+
 add_newline = false
+follow_symlinks = false
+
 
 [character]
-success_symbol = "[➜](bold green)"
+#success_symbol = "[❯](bold green)"
+#error_symbol = "[❯](bold red)"
+success_symbol = "[➜](bold green) "
+error_symbol = "[➜](bold red) "
 
-[cmd_duration]
-disabled = true
+[directory]
+truncation_length = 1
+read_only = ' 🔒'
 
 [git_branch]
-style = "bold red"
-format = "[git:\\([$branch](bold red)\\)](bold blue) "
-#format = "[$symbol](bold blue)[$branch]($style) "
+symbol = 'git'
+format = '[$symbol:\([$branch](bold red)\)](bold blue) '
 
-[line_break]
-disabled = true
-
-[package]
-disabled = true
-
-[rust]
-disabled = true
+[git_status]
+style = "bold yellow"
