@@ -29,11 +29,14 @@ set smartcase
 " Break at convenient points rather than last character
 set linebreak
 
-set updatetime=1000
-
 " Spell check
 "autocmd FileType markdown,tex setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
+
+" Disable provider warnings in checkhealth
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
 
 " set wildmode=longest,list,full
 " set smoothscroll
@@ -64,7 +67,11 @@ let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'},
                            \ {'b': '~/.config/bspwm/bspwmrc'},
                            \ {'s': '~/.config/sxhkd/sxhkdrc'},
                            \ {'z': '~/.zshrc'} ]
-let g:startify_files_number = 5
+"let g:startify_files_number = 5
+let g:startify_lists = [
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ ]
+
 
 " Nord colorscheme options
 let g:nord_underline = 1
@@ -90,6 +97,7 @@ let g:airline#extensions#virtualenv#enabled = 0
 let g:ale_linters = {
     \ 'python': ['ruff', 'mypy'],
     \ 'rust': ['analyzer'],
+    \ 'sql': ['sqlfluff'],
     \}
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
